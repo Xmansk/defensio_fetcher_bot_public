@@ -92,6 +92,9 @@ function MiningDashboardContent() {
   const [rewardsData, setRewardsData] = useState<any | null>(null);
   const [rewardsLoading, setRewardsLoading] = useState(false);
   const [rewardsView, setRewardsView] = useState<'hourly' | 'daily'>('daily');
+  const [rewardsLastRefresh, setRewardsLastRefresh] = useState<number | null>(null);
+  const [historyLastRefresh, setHistoryLastRefresh] = useState<number | null>(null);
+  const [currentTime, setCurrentTime] = useState(Date.now());
 
   useEffect(() => {
     // Retrieve password from sessionStorage
@@ -284,6 +287,7 @@ function MiningDashboardContent() {
       }
 
       setHistory(data);
+      setHistoryLastRefresh(Date.now());
     } catch (err: any) {
       console.error('Failed to fetch history:', err);
     } finally {
@@ -302,6 +306,7 @@ function MiningDashboardContent() {
       }
 
       setRewardsData(data.stats);
+      setRewardsLastRefresh(Date.now());
     } catch (err: any) {
       console.error('Failed to fetch rewards:', err);
       addLog(`Failed to load rewards: ${err.message}`, 'error');
@@ -323,6 +328,16 @@ function MiningDashboardContent() {
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleString();
+  };
+
+  const formatTimeSince = (timestamp: number | null) => {
+    if (!timestamp) return 'Never';
+    const seconds = Math.floor((currentTime - timestamp) / 1000);
+    if (seconds < 60) return `${seconds}s ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    return `${hours}h ${minutes % 60}m ago`;
   };
 
   const getFilteredEntries = () => {
@@ -363,6 +378,15 @@ function MiningDashboardContent() {
       fetchRewards();
     }
   }, [activeTab]);
+
+  // Update refresh time display every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Force re-render to update time display
+      setCurrentTime(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (!stats) {
     return (
@@ -941,14 +965,18 @@ function MiningDashboardContent() {
                   >
                     Errors ({history.errors.length})
                   </button>
-                  <Button
-                    onClick={fetchHistory}
-                    variant="outline"
-                    size="sm"
-                    className="ml-auto"
-                  >
-                    Refresh
-                  </Button>
+                  <div className="ml-auto flex items-center gap-2">
+                    <span className="text-xs text-gray-500">
+                      Last: {formatTimeSince(historyLastRefresh)}
+                    </span>
+                    <Button
+                      onClick={fetchHistory}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Refresh
+                    </Button>
+                  </div>
                 </div>
 
                 {/* History Entries */}
@@ -1112,14 +1140,18 @@ function MiningDashboardContent() {
                   >
                     Daily
                   </button>
-                  <Button
-                    onClick={fetchRewards}
-                    variant="outline"
-                    size="sm"
-                    className="ml-auto"
-                  >
-                    Refresh
-                  </Button>
+                  <div className="ml-auto flex items-center gap-2">
+                    <span className="text-xs text-gray-500">
+                      Last: {formatTimeSince(rewardsLastRefresh)}
+                    </span>
+                    <Button
+                      onClick={fetchRewards}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Refresh
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Hourly View */}
