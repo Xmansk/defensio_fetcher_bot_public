@@ -739,14 +739,16 @@ class MiningOrchestrator extends EventEmitter {
             let submissionSuccess = false;
             try {
               await this.submitSolution(addr, challengeId, nonce, hash, preimage, isDevFee, workerId);
-              submissionSuccess = true;
 
-              // Mark as solved ONLY after successful submission
+              // Mark as solved ONLY after successful submission (no exception thrown)
               if (!this.solvedAddressChallenges.has(addr.bech32)) {
                 this.solvedAddressChallenges.set(addr.bech32, new Set());
               }
               this.solvedAddressChallenges.get(addr.bech32)!.add(challengeId);
               console.log(`[Orchestrator] Worker ${workerId}: Marked address ${addr.index} as solved for challenge ${challengeId.slice(0, 8)}...`);
+
+              // Set success flag AFTER marking as solved - this ensures we only reach here if no exception was thrown
+              submissionSuccess = true;
             } catch (error: any) {
               console.error(`[Orchestrator] Worker ${workerId}: Submission failed:`, error.message);
               submissionSuccess = false;
