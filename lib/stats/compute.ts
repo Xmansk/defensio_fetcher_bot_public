@@ -1,6 +1,6 @@
 /**
  * Statistics Computation
- * Calculates mining statistics from receipts including STAR/NIGHT rewards
+ * Calculates mining statistics from receipts including STAR/DFO rewards
  */
 
 import 'server-only';
@@ -90,7 +90,7 @@ function dateFromChallengeId(challengeId: string): string {
 }
 
 /**
- * Compute statistics from receipts with STAR/NIGHT rewards
+ * Compute statistics from receipts with STAR/DFO rewards
  */
 export function computeStats(receipts: ReceiptEntry[], rates: number[]): GlobalStats {
   if (receipts.length === 0) {
@@ -141,7 +141,7 @@ export function computeStats(receipts: ReceiptEntry[], rates: number[]): GlobalS
       const challengeId = `**D${day.toString().padStart(2, '0')}C00`;
       const date = dateFromChallengeId(challengeId);
 
-      // Calculate STAR and NIGHT
+      // Calculate STAR and DFO
       const rateIndex = day - 1;
       const starPerReceipt = rates[rateIndex] || 0;
       const star = count * starPerReceipt;
@@ -198,7 +198,7 @@ export function computeStats(receipts: ReceiptEntry[], rates: number[]): GlobalS
     // Count total receipts for this day
     const receiptsThisDay = receipts.filter(r => dayFromChallengeId(r.challenge_id) === day).length;
 
-    // Calculate STAR and NIGHT for this day
+    // Calculate STAR and DFO for this day
     const rateIndex = day - 1;
     const starPerReceipt = rates[rateIndex] || 0;
     const star = receiptsThisDay * starPerReceipt;
@@ -253,7 +253,7 @@ export function getTodayStats(receipts: ReceiptEntry[], rates: number[]): DaySta
   const addresses = new Set(todayReceipts.map(r => r.address));
   const day = dayFromChallengeId(todayReceipts[0].challenge_id);
 
-  // Calculate STAR and NIGHT
+  // Calculate STAR and DFO
   const rateIndex = day - 1;
   const starPerReceipt = rates[rateIndex] || 0;
   const star = todayReceipts.length * starPerReceipt;

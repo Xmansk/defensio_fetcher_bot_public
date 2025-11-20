@@ -62,7 +62,7 @@ if "%BUILD_TARGET%"=="server" (
     REM Set optimization flags
     echo.
     echo [3/4] Setting Rust optimization flags...
-    set RUSTFLAGS=-C target-cpu=native -C panic=abort
+    set RUSTFLAGS=-C target-cpu=native -C llvm-args=--inline-threshold=1000 -C link-arg=-s -C prefer-dynamic=no -C target-feature=+aes,+sse2,+sse3,+ssse3,+sse4.1,+sse4.2,+avx,+avx2,+fma
     echo   RUSTFLAGS=%RUSTFLAGS%
 
     REM Build with all optimizations

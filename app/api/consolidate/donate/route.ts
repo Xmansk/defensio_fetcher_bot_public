@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import { consolidationLogger } from '@/lib/storage/consolidation-logger';
 
-const API_BASE = 'https://scavenger.prod.gd.midnighttge.io';
+const API_BASE = 'https://mine.defensio.io/api';
 
 export async function POST(request: NextRequest) {
   try {
