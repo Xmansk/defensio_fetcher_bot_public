@@ -1,8 +1,8 @@
-# Midnight Fetcher Bot
+# Defensio DEX Fetcher Bot
 
-APPLICATION BROUGHT TO YOU BY PADDY https://x.com/PoolShamrock AND PAUL https://x.com/cwpaulm
+This is a fork of Paddy's Midnight Fetcher Bot - https://github.com/ADA-Markets/midnight_fetcher_bot_public
 
-Windows-based NextJS application for user-friendly Midnight mining. Generate wallets, manage 1+X addresses, and mine with an intuitive web interface.
+Windows-based NextJS application for user-friendly Defensio DEX mining. Generate wallets, manage 1+X addresses, and mine with an intuitive web interface.
 
 When the app starts, it can keep around 10 minutes for things to fully get going. As the registration of addresses can take quite some time as they are registering in the API that has rate limiting, luckily this is a one time thing.
 
@@ -67,9 +67,9 @@ This software includes a small development fee to support ongoing maintenance an
 
 1. **Download and extract** the repository:
    ```bash
-   wget https://github.com/ADA-Markets/midnight_fetcher_bot_public/archive/main.zip
+   wget https://github.com/Xmansk/defensio_fetcher_bot_public/archive/main.zip
    unzip main.zip
-   cd midnight_fetcher_bot_public
+   cd defensio_fetcher_bot_public
    ```
 
 2. **Run initial setup** (first time only):
@@ -145,7 +145,7 @@ http://localhost:3001
 ## Application Structure
 
 ```
-midnight-fetcher-bot/
+defensio-fetcher-bot/
 ├── setup.cmd                   # Windows setup script
 ├── app/                        # NextJS app (UI pages)
 │   ├── page.tsx               # Home page
@@ -242,7 +242,7 @@ Create `config.json` in the project root (optional):
 
 ```json
 {
-  "apiBase": "https://scavenger.prod.gd.midnighttge.io",
+  "apiBase": "https://mine.defensio.io/api",
   "pollIntervalMs": 30000,
   "cpuThreads": 8,
   "walletAutogen": {
