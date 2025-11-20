@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Midnight Fetcher Bot',
-  description: 'Windows-based mining application for Midnight',
+  title: 'Defensio Fetcher Bot',
+  description: 'Windows-based mining application for Defensio DEX',
 };
 
 export default function RootLayout({

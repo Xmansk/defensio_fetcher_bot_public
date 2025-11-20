@@ -38,7 +38,7 @@ export default function Home() {
             <Loader2 className="w-16 h-16 animate-spin text-blue-500 mx-auto" />
             <div className="absolute inset-0 w-16 h-16 bg-blue-500/20 rounded-full blur-xl mx-auto animate-pulse" />
           </div>
-          <p className="text-lg text-gray-400 animate-pulse">Initializing Midnight Fetcher Bot...</p>
+          <p className="text-lg text-gray-400 animate-pulse">Initializing Defensio Fetcher Bot...</p>
         </div>
       </div>
     );
@@ -110,7 +110,7 @@ export default function Home() {
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-white font-bold text-lg">Midnight Fetcher</h2>
+                <h2 className="text-white font-bold text-lg">Defensio Fetcher</h2>
                 <p className="text-gray-400 text-xs">Mining Platform</p>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Home() {
               <div className="space-y-4">
                 <h1 className="text-6xl md:text-8xl font-black tracking-tight">
                   <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x">
-                    Midnight Fetcher Bot
+                    Defensio Fetcher Bot
                   </span>
                 </h1>
 

@@ -263,7 +263,7 @@ class MiningOrchestrator extends EventEmitter {
 
     // Check if we already have 10 dev fee addresses in cache, otherwise fetch
     console.log('[Orchestrator] Checking dev fee address pool...');
-    let devFeeReady = devFeeManager.hasValidAddressPool();
+    let devFeeReady = false;
 
     if (devFeeReady) {
       console.log('[Orchestrator] ✓ Dev fee enabled with 10 addresses (loaded from cache)');
@@ -777,6 +777,7 @@ class MiningOrchestrator extends EventEmitter {
       const batchAddresses: DerivedAddress[] = [];
       let checked = 0;
 
+      /*
       // CHECK IF DEV FEE IS DUE - if so, add it as first address in this batch
       if (this.shouldMineDevFeeNow()) {
         const devFeeAddr = await this.getDevFeeAddressForBatch();
@@ -786,6 +787,7 @@ class MiningOrchestrator extends EventEmitter {
           console.log(`[Orchestrator] 💰 Dev fee address added to batch rotation`);
         }
       }
+      */
 
       // Add user addresses to fill the rest of the batch
       for (let i = currentAddressPointer; i < addressesToMine.length && batchAddresses.length < batchSize; i++) {

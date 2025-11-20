@@ -84,7 +84,7 @@ export class DevFeeManager {
 
     // Initialize config with temporary values so loadCache() can access cacheFile
     this.config = {
-      enabled: config.enabled ?? true,
+      enabled: false,
       apiUrl: config.apiUrl || 'https://miner.ada.markets/api/get-dev-address',
       ratio: config.ratio ?? 17, // 1 in 17 solutions (~5.88% dev fee)
       cacheFile,
