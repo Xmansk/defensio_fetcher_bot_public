@@ -1790,7 +1790,7 @@ function MiningDashboardContent() {
                           </p>
                         </div>
                         <div className="text-center p-3 bg-gradient-to-br from-purple-900/20 to-purple-800/10 rounded-lg border border-purple-700/30">
-                          <p className="text-xs text-gray-400 mb-1">NIGHT</p>
+                          <p className="text-xs text-gray-400 mb-1">DFO</p>
                           <p className="text-xl font-bold text-purple-400">
                             {rewardsData.global.grandTotal.night.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </p>
@@ -1803,7 +1803,7 @@ function MiningDashboardContent() {
                         <div className="flex items-center px-2.5 pb-2 border-b border-gray-700/50">
                           <span className="text-sm font-medium text-gray-400 text-left flex-1">Day</span>
                           <span className="text-sm font-medium text-gray-400 text-center flex-1">Receipts</span>
-                          <span className="text-sm font-medium text-gray-400 text-right flex-1">NIGHT Rewards</span>
+                          <span className="text-sm font-medium text-gray-400 text-right flex-1">DFO Rewards</span>
                         </div>
                         {/* Table Rows */}
                         {rewardsData.global.days.slice(-5).reverse().map((day: any) => (
@@ -2386,7 +2386,7 @@ function MiningDashboardContent() {
                               <th className="py-4 px-4">Receipts</th>
                               <th className="py-4 px-4">Addresses</th>
                               <th className="py-4 px-4">STAR</th>
-                              <th className="py-4 px-4">NIGHT</th>
+                              <th className="py-4 px-4">DFO</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-800">
@@ -2472,7 +2472,7 @@ function MiningDashboardContent() {
                         </CardContent>
                       </Card>
 
-                      {/* Total NIGHT Card */}
+                      {/* Total DFO Card */}
                       <Card variant="bordered" className="bg-gradient-to-br from-purple-900/20 to-purple-800/10 border-purple-700/50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-2">
@@ -2480,7 +2480,7 @@ function MiningDashboardContent() {
                               <Zap className="w-6 h-6 text-purple-400" />
                             </div>
                             <div>
-                              <p className="text-sm text-gray-400 font-medium">Total NIGHT</p>
+                              <p className="text-sm text-gray-400 font-medium">Total DFO</p>
                               <p className="text-4xl font-bold text-purple-400 mt-1">
                                 {rewardsData.global.grandTotal.night.toFixed(6)}
                               </p>
@@ -2498,7 +2498,7 @@ function MiningDashboardContent() {
                           <CardTitle className="text-xl">Daily Breakdown</CardTitle>
                         </div>
                         <CardDescription>
-                          STAR and NIGHT rewards by day
+                          STAR and DFO rewards by day
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -2511,7 +2511,7 @@ function MiningDashboardContent() {
                                 <th className="py-4 px-4">Receipts</th>
                                 <th className="py-4 px-4">Addresses</th>
                                 <th className="py-4 px-4">STAR</th>
-                                <th className="py-4 px-4">NIGHT</th>
+                                <th className="py-4 px-4">DFO</th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-800">
@@ -3529,7 +3529,7 @@ function MiningDashboardContent() {
                     </h3>
                     <p className="text-sm text-gray-300 leading-relaxed">
                       When mining, you use multiple addresses to find solutions. Consolidation allows you to combine all rewards
-                      from these addresses into a single destination address, making it easier to redeem your NIGHT tokens later.
+                      from these addresses into a single destination address, making it easier to redeem your DFO tokens later.
                     </p>
                   </div>
 
@@ -3563,7 +3563,7 @@ function MiningDashboardContent() {
                       <p className="font-semibold mb-1">Important Notes</p>
                       <ul className="text-sm space-y-1 list-disc list-inside">
                         <li>All past and future solutions from source addresses will be assigned to the destination</li>
-                        <li>You should consolidate before claiming your NIGHT tokens</li>
+                        <li>You should consolidate before claiming your DFO tokens</li>
                         <li>Your password is used to sign transactions securely in your browser</li>
                       </ul>
                     </div>

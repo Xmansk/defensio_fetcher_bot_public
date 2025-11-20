@@ -24,7 +24,7 @@ interface SolutionTimestamp {
 class MiningOrchestrator extends EventEmitter {
   private isRunning = false;
   private currentChallengeId: string | null = null;
-  private apiBase: string = 'https://scavenger.prod.gd.midnighttge.io';
+  private apiBase: string = 'https://mine.defensio.io/api';
   private pollInterval = 2000; // 2 seconds - frequent polling to keep latest_submission fresh (it updates with every network solution)
   private pollTimer: NodeJS.Timeout | null = null;
   private walletManager: WalletManager | null = null;
@@ -559,7 +559,7 @@ class MiningOrchestrator extends EventEmitter {
       return;
     }
 
-    if (challenge.code === 'active' && challenge.challenge) {
+    if (challenge.challenge) {
       const challengeId = challenge.challenge.challenge_id;
 
       // New challenge detected
@@ -800,7 +800,7 @@ class MiningOrchestrator extends EventEmitter {
       }
 
       // If we didn't get a full batch and haven't checked all addresses, we reached the end
-      if (batchAddresses.length < batchSize && currentAddressPointer + checked >= addressesToMine.length) {
+      if (batchAddresses.length < batchSize && currentAddressPointer + checked >= addressesToMine.length && batchAddresses.length < unsolved.length) {
         console.log(`[Orchestrator] 🔄 Reached end of address list, looping back to beginning`);
         console.log(`[Orchestrator]    ${unsolved.length} addresses still unsolved, continuing...`);
         currentAddressPointer = 0;
@@ -1515,6 +1515,8 @@ class MiningOrchestrator extends EventEmitter {
 
         // For other errors, wait a bit and continue
         await this.sleep(1000);
+
+        continue;
       }
 
       // Emit progress event every PROGRESS_INTERVAL batches
@@ -2041,11 +2043,8 @@ class MiningOrchestrator extends EventEmitter {
       throw new Error('Wallet manager not initialized');
     }
 
-    // Get T&C message
-    const tandcResp = await axios.get(`${this.apiBase}/TandC`, {
-      timeout: 60000, // 60 second timeout (matches other API calls)
-    });
-    const message = tandcResp.data.message;
+    // T&C message
+    const message = `I agree to abide by the terms and conditions as described in version 1-0 of the Defensio DFO mining process: 2da58cd94d6ccf3d933c4a55ebc720ba03b829b84033b4844aafc36828477cc0`;
 
     // Sign message
     const signature = await this.walletManager.signMessage(addr.index, message);

@@ -1,4 +1,5 @@
-# Midnight Fetcher Bot - Comprehensive Documentation
+# Defensio DEX Fetcher Bot - Comprehensive Documentation
+This is a fork of Paddy's Midnight Fetcher Bot - https://github.com/ADA-Markets/midnight_fetcher_bot_public
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -15,7 +16,7 @@
 
 ## Overview
 
-The Midnight Fetcher Bot is a **Windows-based cryptocurrency mining application** built with **Next.js 16** that mines for the Midnight Network. It features a modern web UI that controls a sophisticated mining orchestration system powered by a native Rust hash engine.
+The Defensio DEX Fetcher Bot is a **Windows-based cryptocurrency mining application** built with **Next.js 16** that mines for the Defensio DEX Network. It features a modern web UI that controls a sophisticated mining orchestration system powered by a native Rust hash engine.
 
 ### Key Features
 - HD Wallet management with 200 addresses
@@ -92,7 +93,7 @@ The Midnight Fetcher Bot is a **Windows-based cryptocurrency mining application*
 **The "brain" of the application** - 1600+ lines of sophisticated mining logic.
 
 **Responsibilities:**
-- Polls Midnight API every 2 seconds for active challenges
+- Polls Defensio DEX API every 2 seconds for active challenges
 - Manages 11 parallel worker threads mining the same address
 - Processes 200 addresses sequentially (one at a time)
 - Handles ROM initialization for each new challenge
@@ -209,7 +210,7 @@ devFeesNeeded = floor(userSolutions / 24) - currentDevFees
 ## Directory Structure
 
 ```
-midnight_fetcher_bot/
+defensio_fetcher_bot/
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                  # Home page (wallet selection)
 │   ├── layout.tsx                # Root layout
@@ -360,7 +361,6 @@ User clicks "Start Mining" on /mining page
     ├─> Loads previous solutions from receipts.jsonl
     ├─> Registers unregistered addresses
     │   ├─> For each unregistered address:
-    │   │   ├─> GET /TandC (Midnight API)
     │   │   ├─> Sign message with private key
     │   │   ├─> POST /register/{address}/{signature}/{pubKey}
     │   │   └─> Wait 1.5s (rate limiting)
@@ -532,7 +532,7 @@ scheduleHourlyRestart()
 Located in `lib/mining/orchestrator.ts`:
 
 ```typescript
-private apiBase = 'https://scavenger.prod.gd.midnighttge.io';
+private apiBase = 'https://mine.defensio.io/api';
 private pollInterval = 2000;              // 2 seconds
 private workerThreads = 11;               // Parallel workers
 const BATCH_SIZE = 300;                   // Hashes per batch

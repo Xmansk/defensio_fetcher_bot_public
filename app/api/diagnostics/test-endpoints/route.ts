@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import { WalletManager } from '@/lib/wallet/manager';
 
-const API_BASE = 'https://scavenger.prod.gd.midnighttge.io';
+const API_BASE = 'https://mine.defensio.io/api';
 
 interface TestResult {
   endpoint: string;

@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import { receiptsLogger } from '@/lib/storage/receipts-logger';
 import { computeStats, computeHourlyStats, computeLastNHours, fetchRates, getTodayStats, getSolutionsPerHour } from '@/lib/stats/compute';
 
-const API_BASE = 'https://scavenger.prod.gd.midnighttge.io';
+const API_BASE = 'https://mine.defensio.io/api';
 
 /**
- * GET /api/stats - Get mining statistics with STAR/NIGHT rewards
+ * GET /api/stats - Get mining statistics with STAR/DFO rewards
  */
 export async function GET() {
   try {
@@ -18,7 +18,7 @@ export async function GET() {
     // Fetch STAR rates from API
     const rates = await fetchRates(API_BASE);
 
-    // Compute stats with STAR/NIGHT (only user receipts, no dev fee)
+    // Compute stats with STAR/DFO (only user receipts, no dev fee)
     const globalStats = computeStats(receipts, rates);
     const hourlyStats = computeHourlyStats(receipts, rates);
     const last8Hours = computeLastNHours(receipts, rates, 8);
